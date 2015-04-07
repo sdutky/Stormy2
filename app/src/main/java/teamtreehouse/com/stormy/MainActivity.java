@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +41,7 @@ public class MainActivity extends ActionBarActivity {
     @InjectView(R.id.precipValue) TextView mPrecipValue;
     @InjectView(R.id.summaryLabel) TextView mSummaryLabel;
     @InjectView(R.id.iconImageView) ImageView mIconImageView;
+    @InjectView(R.id.refreshImageView) ImageView mRefreshImageView ;
 
 
     @Override
@@ -49,9 +51,26 @@ public class MainActivity extends ActionBarActivity {
 
         ButterKnife.inject(this);
 
+        final double latitude = 37.8267;
+        final double longitude = -122.423;
+
+        mRefreshImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                getForecast(latitude,longitude) ;
+
+            }
+        });
+
+        getForecast(latitude,longitude);
+
+        Log.d(TAG, "Main UI code is running!");
+    }
+
+    private void getForecast(double latitude, double longitude) {
         String apiKey = "27974c4bc33201748eaf542a6769c3b7";
-        double latitude = 37.8267;
-        double longitude = -122.423;
+
         String forecastUrl = "https://api.forecast.io/forecast/" + apiKey +
                 "/" + latitude + "," + longitude;
 
@@ -102,8 +121,6 @@ public class MainActivity extends ActionBarActivity {
             Toast.makeText(this, getString(R.string.network_unavailable_message),
                     Toast.LENGTH_LONG).show();
         }
-
-        Log.d(TAG, "Main UI code is running!");
     }
 
     private void updateDisplay() {

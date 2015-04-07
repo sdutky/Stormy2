@@ -128,4 +128,17 @@
         android:textColor="#FFFFFFFF"
         android:textSize="18sp"
         android:gravity="center_horizontal"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/refreshImageView"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_marginLeft="222dp"
+        android:layout_marginStart="222dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/refresh"
+        android:layout_above="@+id/iconImageView"/>
 </RelativeLayout>
